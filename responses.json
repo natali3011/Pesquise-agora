@@ -1,0 +1,44 @@
+
+{
+  "name": "responses",
+  "options": {
+    "validator": {
+      "$jsonSchema": {
+        "bsonType": "object",
+        "required": ["survey_id", "user_id", "answers", "submitted_at"],
+        "properties": {
+          "survey_id": {
+            "bsonType": "string",
+            "description": "ID da pesquisa respondida"
+          },
+          "user_id": {
+            "bsonType": "string",
+            "description": "ID do usuário que respondeu"
+          },
+          "answers": {
+            "bsonType": "array",
+            "description": "Respostas do usuário"
+          },
+          "reward_earned": {
+            "bsonType": "int",
+            "minimum": 0,
+            "description": "Recompensa ganha em centavos"
+          },
+          "completion_time_seconds": {
+            "bsonType": "int",
+            "minimum": 1,
+            "description": "Tempo para completar em segundos"
+          },
+          "submitted_at": {
+            "bsonType": "string",
+            "title": "datetime",
+            "description": "Data de submissão"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "validationLevel": "moderate",
+    "validationAction": "warn"
+  }
+}
