@@ -1,0 +1,101 @@
+
+{
+  "name": "surveys",
+  "options": {
+    "validator": {
+      "$jsonSchema": {
+        "bsonType": "object",
+        "required": ["title", "description", "creator_id", "reward_cents", "questions", "status", "created_at"],
+        "properties": {
+          "title": {
+            "bsonType": "string",
+            "minLength": 5,
+            "maxLength": 200,
+            "description": "Título da pesquisa"
+          },
+          "description": {
+            "bsonType": "string",
+            "minLength": 10,
+            "maxLength": 1000,
+            "description": "Descrição detalhada da pesquisa"
+          },
+          "creator_id": {
+            "bsonType": "string",
+            "description": "ID do usuário criador"
+          },
+          "reward_cents": {
+            "bsonType": "int",
+            "minimum": 1,
+            "maximum": 10000,
+            "description": "Recompensa em centavos por resposta"
+          },
+          "questions": {
+            "bsonType": "array",
+            "minItems": 1,
+            "maxItems": 50,
+            "description": "Lista de perguntas da pesquisa"
+          },
+          "category": {
+            "bsonType": "string",
+            "enum": ["tecnologia", "saude", "educacao", "entretenimento", "negocios", "lifestyle", "outros"],
+            "description": "Categoria da pesquisa"
+          },
+          "status": {
+            "bsonType": "string",
+            "enum": ["draft", "active", "paused", "completed", "expired"],
+            "description": "Status da pesquisa"
+          },
+          "target_responses": {
+            "bsonType": "int",
+            "minimum": 10,
+            "maximum": 100000,
+            "description": "Número alvo de respostas"
+          },
+          "current_responses": {
+            "bsonType": "int",
+            "minimum": 0,
+            "description": "Número atual de respostas"
+          },
+          "boost_level": {
+            "bsonType": "int",
+            "minimum": 0,
+            "maximum": 5,
+            "description": "Nível de impulsionamento (0-5)"
+          },
+          "boost_expires_at": {
+            "bsonType": "string",
+            "title": "datetime",
+            "description": "Data de expiração do impulsionamento"
+          },
+          "expires_at": {
+            "bsonType": "string",
+            "title": "datetime",
+            "description": "Data de expiração da pesquisa"
+          },
+          "data_sale_price": {
+            "bsonType": "int",
+            "minimum": 0,
+            "description": "Preço de venda dos dados em centavos"
+          },
+          "is_data_for_sale": {
+            "bsonType": "bool",
+            "description": "Se os dados estão à venda"
+          },
+          "created_at": {
+            "bsonType": "string",
+            "title": "datetime",
+            "description": "Data de criação"
+          },
+          "updated_at": {
+            "bsonType": "string",
+            "title": "datetime",
+            "description": "Data de atualização"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "validationLevel": "moderate",
+    "validationAction": "warn"
+  }
+}
