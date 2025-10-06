@@ -1,0 +1,51 @@
+
+{
+  "name": "subscriptions",
+  "options": {
+    "validator": {
+      "$jsonSchema": {
+        "bsonType": "object",
+        "required": ["user_id", "plan_type", "status", "started_at", "expires_at"],
+        "properties": {
+          "user_id": {
+            "bsonType": "string",
+            "description": "ID do usuário"
+          },
+          "plan_type": {
+            "bsonType": "string",
+            "enum": ["basic", "premium", "enterprise"],
+            "description": "Tipo do plano"
+          },
+          "status": {
+            "bsonType": "string",
+            "enum": ["active", "expired", "cancelled"],
+            "description": "Status da assinatura"
+          },
+          "surveys_limit": {
+            "bsonType": "int",
+            "minimum": 1,
+            "description": "Limite de pesquisas por mês"
+          },
+          "monthly_price_cents": {
+            "bsonType": "int",
+            "minimum": 0,
+            "description": "Preço mensal em centavos"
+          },
+          "started_at": {
+            "bsonType": "string",
+            "title": "datetime",
+            "description": "Data de início"
+          },
+          "expires_at": {
+            "bsonType": "string",
+            "title": "datetime",
+            "description": "Data de expiração"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "validationLevel": "moderate",
+    "validationAction": "warn"
+  }
+}
