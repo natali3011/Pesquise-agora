@@ -1,0 +1,50 @@
+
+{
+  "name": "user_earnings",
+  "options": {
+    "validator": {
+      "$jsonSchema": {
+        "bsonType": "object",
+        "required": ["user_id", "amount_cents", "source_type", "source_id", "status", "earned_at"],
+        "properties": {
+          "user_id": {
+            "bsonType": "string",
+            "description": "ID do usuário"
+          },
+          "amount_cents": {
+            "bsonType": "int",
+            "minimum": 1,
+            "description": "Valor ganho em centavos"
+          },
+          "source_type": {
+            "bsonType": "string",
+            "enum": ["survey_response", "referral", "bonus"],
+            "description": "Tipo da fonte de ganho"
+          },
+          "source_id": {
+            "bsonType": "string",
+            "description": "ID da fonte (pesquisa, referência, etc.)"
+          },
+          "status": {
+            "bsonType": "string",
+            "enum": ["pending", "confirmed", "paid"],
+            "description": "Status do pagamento"
+          },
+          "earned_at": {
+            "bsonType": "string",
+            "title": "datetime",
+            "description": "Data do ganho"
+          },
+          "paid_at": {
+            "bsonType": "string",
+            "title": "datetime",
+            "description": "Data do pagamento"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "validationLevel": "moderate",
+    "validationAction": "warn"
+  }
+}
